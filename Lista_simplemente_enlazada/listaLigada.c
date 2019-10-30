@@ -24,9 +24,9 @@ insertaLista (struct listaLigada **lista, int dato)
     }
   else
     {
-	    nuevo->siguiente=*lista;
-	    nuevo->datos = dato;
-	    *lista = nuevo;
+      nuevo->siguiente = *lista;
+      nuevo->datos = dato;
+      *lista = nuevo;
     }
 }
 
@@ -40,7 +40,48 @@ mostrarLista (struct listaLigada *lista)
       printf ("\n%d\n", actual->datos);
       actual = actual->siguiente;
     }
+  return;
 }
+
+int
+eliminarDato (struct listaLigada **lista, int dato)
+{
+  struct listaLigada *aux;
+  struct listaLigada *ant;
+  struct listaLigada *act;
+  if (*lista == NULL)
+    {
+      return 0;
+    }
+//elimina primer dato
+  if (dato == (*lista)->datos)
+    {
+      aux = *lista;
+      *lista = (*lista)->siguiente;
+      free (aux);
+      return dato;
+    }
+  else
+    {
+      ant = *lista;
+      act = (*lista)->siguiente;
+      while (act != NULL && act->datos != dato)
+	{
+	  ant = act;
+	  act = act->siguiente;
+	}
+      if (act != NULL)
+	{
+	  aux = act;
+	  ant->siguiente = act->siguiente;
+	  free (aux);
+	  return dato;
+	}
+
+    }
+  return '\0';
+}
+
 
 int
 main ()
@@ -51,14 +92,12 @@ main ()
   insertaLista (&lista, 2017);
   insertaLista (&lista, 2016);
   insertaLista (&lista, 2015);
-  insertaLista (&lista, 2014);
-  insertaLista (&lista, 2013);
-  insertaLista (&lista, 2012);
-  insertaLista (&lista, 2011);
-  insertaLista (&lista, 2010);
-  insertaLista (&lista, 2009);
-  insertaLista (&lista, 2008);
 
-  mostrarLista(lista);
+  mostrarLista (lista);
+  printf ("---------------------------------------");
+  eliminarDato (&lista, 2015);
+  eliminarDato (&lista, 2019);
+  eliminarDato (&lista, 2017);
+  mostrarLista (lista);
   return 0;
 }
