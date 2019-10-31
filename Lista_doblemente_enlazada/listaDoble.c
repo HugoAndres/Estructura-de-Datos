@@ -7,27 +7,76 @@ struct listaDoble
   struct listaDoble *siguiente;
   struct listaDoble *anterior;
 };
-struct listaDoble *
-insertaLista (struct listaDoble *lista, int dato)
+
+void
+insertaInicio (struct listaDoble **lista, int dato)
 {
   struct listaDoble *nuevo = NULL;
   nuevo = (struct listaDoble *) malloc (sizeof (struct listaDoble));
   if (nuevo == NULL)
     {
-      return NULL;
+      return;
     }
+  if (*lista == NULL)
+    {
+      *lista = nuevo;
+      (*lista)->datos = dato;
+      (*lista)->siguiente = NULL;
+      (*lista)->anterior = NULL;
+    }
+  else
+    {
+      (*lista)->anterior = nuevo;
+      nuevo->anterior = NULL;
+      nuevo->siguiente = *lista;
+      nuevo->datos = dato;
+      *lista = nuevo;
+    }
+}
 
-  nuevo->datos = dato;
-  nuevo->siguiente = lista;
-  nuevo->anterior = NULL;
+int
+eliminarDato (struct listaDoble **lista, int dato)
+{
+  struct listaDoble *actual = *lista;
+  struct listaDoble *ant = NULL;
+  struct listaDoble *sig = NULL;
   if (lista == NULL)
     {
-      return nuevo;
+      return 0;
     }
-  lista->anterior = nuevo;
-
-  return nuevo;
+  while (actual != NULL)
+    {
+      if (actual->datos == dato)
+	{
+	  if (actual == *lista)
+	    {
+	      *lista = actual->siguiente;
+	      if (actual->siguiente != NULL)
+		actual->siguiente->anterior == NULL;
+	    }
+	  else if (actual->siguiente == NULL)
+	    {
+	      ant = actual->anterior;
+	      actual->anterior = NULL;
+	      ant->siguiente = NULL;
+	    }
+	  else
+	    {
+	      ant = actual->anterior;
+	      actual->anterior = NULL;
+	      sig = actual->siguiente;
+	      actual->siguiente = NULL;
+	      ant->siguiente = sig;
+	      sig->anterior = ant;
+	    }
+	  free (actual);
+	  return 1;
+	}
+      actual = actual->siguiente;
+    }
+  return 0;
 }
+
 
 void
 mostrar (struct listaDoble *lista)
@@ -45,12 +94,16 @@ int
 main (void)
 {
   struct listaDoble *lista = NULL;
-
-
-  lista = insertaLista (lista, 0);
-  lista = insertaLista (lista, 1);
-  lista = insertaLista (lista, 2);
-  lista = insertaLista (lista, 3);
-  lista = insertaLista (lista, 4);
+  insertaInicio (&lista, 0);
+  insertaInicio (&lista, 1);
+  insertaInicio (&lista, 2);
+  insertaInicio (&lista, 3);
+  mostrar (lista);
+  printf ("-----------------------\n");
+  eliminarDato (&lista, 1);
+  eliminarDato (&lista, 3);
+  mostrar(lista);
+  printf("-----------------------\n");
+  insertaInicio(&lista,2);
   mostrar (lista);
 }
