@@ -53,7 +53,6 @@ eliminarDato (struct listaLigada **lista, int dato)
     {
       return 0;
     }
-//elimina primer dato
   if (dato == (*lista)->datos)
     {
       aux = *lista;
@@ -82,22 +81,28 @@ eliminarDato (struct listaLigada **lista, int dato)
   return '\0';
 }
 
-
 int
 main ()
 {
   struct listaLigada *lista = NULL;
-  insertaLista (&lista, 2019);
-  insertaLista (&lista, 2018);
-  insertaLista (&lista, 2017);
-  insertaLista (&lista, 2016);
-  insertaLista (&lista, 2015);
+
+  insertaLista (&lista, 2013);
+  insertaLista (&lista, 2012);
+  insertaLista (&lista, 2011);
+  insertaLista (&lista, 2010);
+  insertaLista (&lista, 2009);
+  insertaLista (&lista, 2008);
 
   mostrarLista (lista);
-  printf ("---------------------------------------");
-  eliminarDato (&lista, 2015);
-  eliminarDato (&lista, 2019);
-  eliminarDato (&lista, 2017);
+  printf ("-------------------------------------");
+
+
+  eliminarDato (&lista, 2008);
+  eliminarDato (&lista, 2010);
+  eliminarDato (&lista, 2012);
+  eliminarDato (&lista, 2013);
   mostrarLista (lista);
+
+
   return 0;
 }
