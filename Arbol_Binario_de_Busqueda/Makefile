@@ -7,4 +7,4 @@ a.out: main.o Arbol_Binario_de_Busqueda.o
 run: a.out
 	./a.out
 clean:
-	rm -f a.out maoin.o Arbol_Binario_de_Busqueda.o
+	rm -f a.out main.o Arbol_Binario_de_Busqueda.o
