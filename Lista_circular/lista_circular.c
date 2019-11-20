@@ -1,12 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-struct listaCircular
-{
-  int datos;
-  struct listaCircular *siguiente;
-};
-
+#include"lista_circular.h"
 
 void
 insertar (struct listaCircular **lista, int dato)
@@ -68,20 +60,4 @@ mostrar (struct listaCircular *lista)
       nuevo = nuevo->siguiente;
     }
   while (nuevo != lista);
-}
-
-int
-main ()
-{
-  struct listaCircular *lista = NULL;
-  insertar (&lista, 4);
-  insertar (&lista, 3);
-  insertar (&lista, 10);
-//  insertar (&lista, 9);
-//  insertar (&lista, 20);
-  mostrar (lista);
-  printf ("\n-----------------------\n");
-  eliminar (&lista, 3);
-  mostrar (lista);
-  return 0;
 }
