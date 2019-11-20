@@ -1,13 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-struct ABB
-{
-  int datos;
-  struct ABB *derecho;
-  struct ABB *izquierdo;
-};
-
+#include "Arbol_Binario_de_Busqueda.h"
 int
 vacio (struct ABB *arbol)
 {
@@ -26,19 +17,19 @@ insertar (struct ABB **arbol, int dato)
     {
       padre = actual;
       if (dato < actual->datos)
-	
-	  actual = actual->izquierdo;
-	
+
+	actual = actual->izquierdo;
+
       else if (dato > actual->datos)
-	
-	  actual = actual->derecho;
-	
+
+	actual = actual->derecho;
+
     }
 
   if (!vacio (actual))
-    
-      return;
-    
+
+    return;
+
 
   if (vacio (padre))
     {
@@ -145,14 +136,14 @@ void
 inOrden (struct ABB *arbol, void (*func) (int *))
 {
   if (arbol->izquierdo)
-    
-      inOrden (arbol->izquierdo, func);
-    
+
+    inOrden (arbol->izquierdo, func);
+
   func (&(arbol->datos));
   if (arbol->derecho)
-    
-      inOrden (arbol->derecho, func);
-    
+
+    inOrden (arbol->derecho, func);
+
 }
 
 void
@@ -202,29 +193,5 @@ bucar (struct ABB *arbol, int dato)
       else if (dato > actual->datos)
 	actual = actual->derecho;
     }
-  return 0;
-}
-
-
-int
-main ()
-{
-  struct ABB *arbol = NULL;
-
-  insertar (&arbol, 10);
-  insertar (&arbol, 5);
-  insertar (&arbol, 12);
-  insertar (&arbol, 4);
-  insertar (&arbol, 11);
-  insertar (&arbol, 14);
-  printf ("Arbol en InOrden: ");
-  inOrden (arbol, Mostrar);
-  printf("\n");
-  printf ("Arbol en PreOrden: ");
-  preOrden (arbol, Mostrar);
-  printf("\n");
-  printf ("Arbol en PostOrden: ");
-  postOrden (arbol, Mostrar);
-  
   return 0;
 }
