@@ -12,12 +12,12 @@ struct listaDoble
 };
 
 void
-insertaInicio (struct listaDoble **lista, int dato);
+insertaInicio (struct listaDoble **, int);
 
 int
-eliminarDato (struct listaDoble **lista, int dato);
+eliminarDato (struct listaDoble **, int);
 
 void
-mostrar (struct listaDoble *lista);
+mostrar (struct listaDoble *);
 
 #endif
