@@ -10,12 +10,9 @@ struct listaLigada
   struct listaLigada *siguiente;
 };
 
-void
-insertaLista (struct listaLigada **, int );
+void insertaLista (struct listaLigada **, int);
 
-void
-mostrarLista (struct listaLigada *);
+void mostrarLista (struct listaLigada *);
 
-int
-eliminarDato (struct listaLigada **, int );
+int eliminarDato (struct listaLigada **, int);
 #endif
