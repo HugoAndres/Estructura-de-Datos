@@ -5,20 +5,25 @@ main ()
 {
   struct ABB *arbol = NULL;
 
+  insertar (&arbol, 8);
+  insertar (&arbol, 3);
   insertar (&arbol, 10);
-  insertar (&arbol, 5);
-  insertar (&arbol, 12);
+  insertar (&arbol, 1);
+  insertar (&arbol, 6);
   insertar (&arbol, 4);
-  insertar (&arbol, 11);
+  insertar (&arbol, 7);
   insertar (&arbol, 14);
+  insertar (&arbol, 13);
   printf ("Arbol en InOrden: ");
-  inOrden (arbol, Mostrar);
+  INORDEN (arbol);
   printf ("\n");
   printf ("Arbol en PreOrden: ");
-  preOrden (arbol, Mostrar);
+  PREORDEN (arbol);
   printf ("\n");
   printf ("Arbol en PostOrden: ");
-  postOrden (arbol, Mostrar);
-
+  POSTORDEN (arbol);
+  printf ("\nBuscar elemento:\n");
+  buscar (arbol, 5);
+  buscar (arbol, 1);
   return 0;
 }
